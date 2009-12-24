@@ -1,8 +1,7 @@
-
 -- My solutions to the exercieses in Hutton's Programming in Haskel
+
 -- for ord/chr
 import Char 
-
 
 -- Misc
 
@@ -15,7 +14,6 @@ qsort (x:xs) = qsort lhs ++ [x] ++ qsort rhs
                 where
                   lhs =  [a | a <- xs,  a >= x]
                   rhs =  [a | a <- xs, a < x]
-
 -- Chapter 2
 
 n = a `div` length xs
@@ -121,8 +119,10 @@ crack xs = encode(-factor) xs
 
 
 
-
-
+--Chapter 7
+f781a f p xs = [f x | x <- xs,p x]
+f781b f p xs = (map f) (filter p xs) 
+f781c f p xs = (map . filter) p xs 
 
 
 
