@@ -117,35 +117,54 @@ crack xs = encode(-factor) xs
         rotate n xs = drop n xs ++ take n xs
         
 
+--Chapter 6
 
+exp'         :: Int -> Int -> Int
+exp'  x 0     = 1
+exp'  x (y+1) = x * (x `exp'` y)
+
+length' [] = 0
+length' xs = 1 + (length' (tail xs))
+
+drop' 0 xs = xs
+drop' n [] = [] 
+drop' (n+1) xs = drop' n (tail xs)
+
+len xs = foldr( (+) 1)
+
+and' [True] = True
+and' (True:xs) = and' xs
+and' (False:xs) = False
+
+concat' [] = []
+concat' (xs:ys) = xs ++ concat ys
+
+rep 0 x = []
+rep (n+1) x = [x] ++ rep n x
+
+nth 1 (x:xs) = x
+nth (n+1) (x:xs) = nth n xs
+
+elem' c [] = False
+elem' c (x:xs) | c == x = True 
+               | otherwise = elem' c xs
+
+merge [] [] = []
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys) | x < y = [x] ++ merge xs (y:ys)
+                    | otherwise = [y] ++ merge (x:xs) ys
+
+msort [] = [] 
+msort [x] = [x]
+msort xs = merge (msort (fst h)) (msort (snd h))
+            where
+                h = halve xs
+
+sum' = foldr (+) 0
 
 --Chapter 7
 f781a f p xs = [f x | x <- xs,p x]
 f781b f p xs = (map f) (filter p xs) 
 f781c f p xs = (map . filter) p xs 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
